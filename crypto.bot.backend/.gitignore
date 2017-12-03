@@ -257,6 +257,8 @@ node_modules/
 # TypeScript v1 declaration files
 typings/
 
+*.db4
+
 # Visual Studio 6 build log
 *.plg
 
