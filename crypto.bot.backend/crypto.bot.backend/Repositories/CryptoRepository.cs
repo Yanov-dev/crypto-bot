@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using crypto.bot.backend.Models;
 using LiteDB;
@@ -34,6 +35,12 @@ namespace crypto.bot.backend.Repositories
         public List<CryptoInfo> GetCurrencies()
         {
             return _con.GetCollection<CryptoInfo>().FindAll().ToList();
+        }
+
+        public void AddTrigger(CurrencyTrigger trigger)
+        {
+            trigger.Id = Guid.NewGuid().ToString();
+            _con.GetCollection<CurrencyTrigger>().Insert(trigger);
         }
     }
 }

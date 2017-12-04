@@ -8,5 +8,7 @@ namespace crypto.bot.backend.Repositories
         void UpdateCurrencies(CryptoInfo[] infos);
 
         List<CryptoInfo> GetCurrencies();
+
+        void AddTrigger(CurrencyTrigger trigger);
     }
 }
