@@ -1,16 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './/app-routing.module';
+import { CommonModule } from '@angular/common';
+import { HomePageComponent } from './pages/home-page/home.page';
+import { CallBackPageComponent } from './pages/callback-page/callback.page';
 
 @NgModule({
   declarations: [
-    AppComponent
+    HomePageComponent,
+    AppComponent,
+    CallBackPageComponent
   ],
   imports: [
-    BrowserModule
+    CommonModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatToolbarModule,
+    MatButtonModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

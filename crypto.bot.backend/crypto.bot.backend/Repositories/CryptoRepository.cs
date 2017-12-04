@@ -13,6 +13,7 @@ namespace crypto.bot.backend.Repositories
         public CryptoRepository()
         {
             _con = new LiteDatabase("main.db4");
+            _con.GetCollection<CurrencyTrigger>().EnsureIndex(e => e.TelegramUserId);
         }
 
         public void UpdateCurrencies(CryptoInfo[] infos)
@@ -41,6 +42,11 @@ namespace crypto.bot.backend.Repositories
         {
             trigger.Id = Guid.NewGuid().ToString();
             _con.GetCollection<CurrencyTrigger>().Insert(trigger);
+        }
+
+        public List<CurrencyTrigger> GetTriggers(long telegramUserId)
+        {
+            return _con.GetCollection<CurrencyTrigger>().Find(e => e.TelegramUserId == telegramUserId).ToList();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace crypto.bot.backend.Repositories
         List<CryptoInfo> GetCurrencies();
 
         void AddTrigger(CurrencyTrigger trigger);
+
+        List<CurrencyTrigger> GetTriggers(long telegramUserId);
     }
 }
