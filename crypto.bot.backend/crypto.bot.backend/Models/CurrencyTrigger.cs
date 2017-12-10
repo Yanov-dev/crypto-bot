@@ -6,7 +6,7 @@ namespace crypto.bot.backend.Models
     {
         public string Id { get; set; }
         
-        public int TelegramUserId { get; set; }
+        public long TelegramUserId { get; set; }
         
         public string CurrencyId { get; set; }
         

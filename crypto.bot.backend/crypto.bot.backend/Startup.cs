@@ -39,7 +39,7 @@ namespace crypto.bot.backend
             // db
             services.AddSingleton<ICryptoRepository, CryptoRepository>();
 
-            services.AddSingleton<IAuthService, AuthService>();
+            
 
             services.Configure<TelegramOptions>(Configuration.GetSection(nameof(TelegramOptions)));
             services.Configure<AuthOptions>(Configuration.GetSection(nameof(AuthOptions)));
@@ -58,12 +58,14 @@ namespace crypto.bot.backend
                         ValidateIssuer = true,
                         ValidIssuer = authOptions.Issuer,
                         ValidateAudience = true,
-                        ValidAudience = authOptions.Host,
+                        ValidAudience = authOptions.Audience,
                         ValidateLifetime = true,
                         IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true,
                     };
                 });
+            
+            services.AddSingleton<IAuthService, AuthService>();
             
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -79,6 +81,7 @@ namespace crypto.bot.backend
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseAuthentication();
             app.UseCors("MyPolicy");
             app.UseMvc();
         }

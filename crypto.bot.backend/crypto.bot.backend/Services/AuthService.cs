@@ -26,6 +26,7 @@ namespace crypto.bot.backend.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, telegramUserId.ToString()),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, "user")
             };
             var claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
@@ -37,11 +38,11 @@ namespace crypto.bot.backend.Services
         {
             var identity = GetIdentity(telegramUserId);
 
-            var now = DateTime.UtcNow;
+            var now = DateTime.Now;
 
             var jwt = new JwtSecurityToken(
                 _authOptions.Issuer,
-                _authOptions.Host,
+                _authOptions.Audience,
                 notBefore: now,
                 claims: identity.Claims,
                 expires: now.Add(TimeSpan.FromMinutes(_authOptions.Lifetime)),

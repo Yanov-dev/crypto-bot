@@ -9,6 +9,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './pages/home-page/home.page';
 import { CallBackPageComponent } from './pages/callback-page/callback.page';
+import { NetworkService } from './services/network-service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { CallBackPageComponent } from './pages/callback-page/callback.page';
     CallBackPageComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -24,7 +27,9 @@ import { CallBackPageComponent } from './pages/callback-page/callback.page';
     MatButtonModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    NetworkService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
