@@ -15,4 +15,7 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\crypto.bot.backend.dto\crypto.bot.backend.dto.csproj" />
+  </ItemGroup>
 </Project>

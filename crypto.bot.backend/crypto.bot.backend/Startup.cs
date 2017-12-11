@@ -35,6 +35,8 @@ namespace crypto.bot.backend
             // background
             services.AddSingleton<IHostedService, CryptoCheckHostedService>();
             services.AddSingleton<IHostedService, TelegramBotHostedService>();
+
+            services.AddSingleton<ITokenService, TokenService>();
             
             // db
             services.AddSingleton<ICryptoRepository, CryptoRepository>();

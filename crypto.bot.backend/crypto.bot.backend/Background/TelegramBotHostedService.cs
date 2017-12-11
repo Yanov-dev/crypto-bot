@@ -13,17 +13,20 @@ namespace crypto.bot.backend.Background
     public class TelegramBotHostedService : HostedService
     {
         private readonly IAuthService _authService;
+        private readonly ITokenService _tokenService;
         private readonly AuthOptions _authOptions;
         private readonly TelegramBotClient _api;
 
         public TelegramBotHostedService(
-            IAuthService authService, 
+            IAuthService authService,
+            ITokenService tokenService,
             IOptions<TelegramOptions> telegramOptions,
             IOptions<AuthOptions> authOptions)
         {
             _authService = authService;
+            _tokenService = tokenService;
             _authOptions = authOptions.Value;
-            
+
             var token = telegramOptions?.Value?.Token;
 
             if (string.IsNullOrEmpty(token))
@@ -70,7 +73,11 @@ namespace crypto.bot.backend.Background
             if ("/login".Equals(message))
             {
                 var jwt = _authService.GenerateJwt(chatId);
-                var callBackUrl = $"http://localhost:4200/callback/{jwt}";
+                var tokenId = Guid.NewGuid();
+
+                _tokenService.Add(tokenId, jwt);
+
+                var callBackUrl = $"http://localhost:4200/callback/{tokenId}";
                 await _api.SendTextMessageAsync(chatId, callBackUrl).ConfigureAwait(false);
             }
         }

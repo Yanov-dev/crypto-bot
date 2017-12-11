@@ -11,12 +11,16 @@ import { HomePageComponent } from './pages/home-page/home.page';
 import { CallBackPageComponent } from './pages/callback-page/callback.page';
 import { NetworkService } from './services/network-service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth-service';
+import { VariableService } from './services/variable-service';
+import { TriggersComponent } from './components/triggers.component';
 
 @NgModule({
   declarations: [
     HomePageComponent,
     AppComponent,
-    CallBackPageComponent
+    CallBackPageComponent,
+    TriggersComponent
   ],
   imports: [
     HttpClientModule,
@@ -28,7 +32,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppRoutingModule
   ],
   providers: [
-    NetworkService
+    NetworkService,
+    AuthService,
+    VariableService
   ],
   bootstrap: [AppComponent]
 })
