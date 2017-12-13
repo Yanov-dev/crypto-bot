@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,19 +10,29 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './pages/home-page/home.page';
 import { CallBackPageComponent } from './pages/callback-page/callback.page';
 import { NetworkService } from './services/network-service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth-service';
 import { VariableService } from './services/variable-service';
-import { TriggersComponent } from './components/triggers.component';
+import { TriggerService } from './services/trigger-service';
+import { AuthenticationInterceptor } from './services/authentication-interceptor';
+import { CurrencyService } from './services/currency-service';
+import { TriggersComponent } from './components/triggers.component/triggers.component';
+import { CurrencyComponent } from './components/currency.component/currency.component';
+import { MatTableModule } from '@angular/material/table';
+import { AddTriggerDialog } from './components/add.trigger.component/add.trigger.dialog';
 
 @NgModule({
   declarations: [
+    AddTriggerDialog,
     HomePageComponent,
+    CurrencyComponent,
     AppComponent,
     CallBackPageComponent,
     TriggersComponent
   ],
   imports: [
+    MatDialogModule,
+    MatTableModule,
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
@@ -31,8 +41,18 @@ import { TriggersComponent } from './components/triggers.component';
     MatButtonModule,
     AppRoutingModule
   ],
+  entryComponents: [
+    AddTriggerDialog
+  ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
+    TriggerService,
     NetworkService,
+    CurrencyService,
     AuthService,
     VariableService
   ],

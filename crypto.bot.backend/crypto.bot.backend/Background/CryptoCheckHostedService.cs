@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using crypto.bot.backend.dto;
 using crypto.bot.backend.Models;
 using crypto.bot.backend.Repositories;
 using Newtonsoft.Json;
@@ -33,9 +36,9 @@ namespace crypto.bot.backend.Background
                         throw response.ErrorException;
                     
                     var json = response.Content;
-                    var models = JsonConvert.DeserializeObject<CryptoInfo[]>(json);
+                    var models = JsonConvert.DeserializeObject<CurrencyDto[]>(json);
 
-                    _cryptoRepository.UpdateCurrencies(models);
+                    _cryptoRepository.UpdateCurrencies(Mapper.Map<CurrencyInfo[]>(models));
                 }
                 catch (Exception ex)
                 {

@@ -18,11 +18,11 @@ export class AuthService {
     }
 
     setToken(jwt: string) {
-        sessionStorage.setItem(this.TOKEN_KEY, jwt);
+        localStorage.setItem(this.TOKEN_KEY, jwt);
     }
 
     getToken(): string {
-        return sessionStorage.getItem(this.TOKEN_KEY);
+        return localStorage.getItem(this.TOKEN_KEY);
     }
 
     getTelegramId(): number {

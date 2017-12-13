@@ -5,9 +5,9 @@ namespace crypto.bot.backend.Repositories
 {
     public interface ICryptoRepository
     {
-        void UpdateCurrencies(CryptoInfo[] infos);
+        void UpdateCurrencies(CurrencyInfo[] infos);
 
-        List<CryptoInfo> GetCurrencies();
+        List<CurrencyInfo> GetCurrencies();
 
         void AddTrigger(CurrencyTrigger trigger);
 

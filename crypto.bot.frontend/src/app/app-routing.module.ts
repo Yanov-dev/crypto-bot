@@ -4,12 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home.page';
 import { CallBackPageComponent } from './pages/callback-page/callback.page';
-import { TriggersComponent } from './components/triggers.component';
+import { TriggersComponent } from './components/triggers.component/triggers.component';
+import { CurrencyComponent } from './components/currency.component/currency.component';
 
 const appRoutes: Routes = [
   {
-    path: 'triggers', component: TriggersComponent
+    path: '',
+    component: TriggersComponent,
+    pathMatch: 'full'
   },
+  { path: 'triggers', component: TriggersComponent },
+  { path: "currencies", component: CurrencyComponent },
   {
     path: 'callback/:tokenId',
     component: CallBackPageComponent

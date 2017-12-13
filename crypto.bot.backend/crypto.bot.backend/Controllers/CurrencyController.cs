@@ -10,7 +10,7 @@ namespace crypto.bot.backend.Controllers
     [Route("api/currency")]
     public class CurrencyController : Controller
     {
-        public async Task<List<CryptoInfo>> Get([FromServices] ICryptoRepository cryptoRepository)
+        public async Task<List<CurrencyInfo>> Get([FromServices] ICryptoRepository cryptoRepository)
         {
             return await Task.Run(() => cryptoRepository.GetCurrencies());
         }

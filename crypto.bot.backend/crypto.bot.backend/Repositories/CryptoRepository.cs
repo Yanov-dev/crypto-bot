@@ -16,26 +16,26 @@ namespace crypto.bot.backend.Repositories
             _con.GetCollection<CurrencyTrigger>().EnsureIndex(e => e.TelegramUserId);
         }
 
-        public void UpdateCurrencies(CryptoInfo[] infos)
+        public void UpdateCurrencies(CurrencyInfo[] infos)
         {
             if (infos == null || infos.Length == 0)
                 return;
 
-            if (_con.CollectionExists(nameof(CryptoInfo)))
+            if (_con.CollectionExists(nameof(CurrencyInfo)))
             {
-                var col = _con.GetCollection<CryptoInfo>();
+                var col = _con.GetCollection<CurrencyInfo>();
                 col.Update(infos);
             }
             else
             {
-                var col = _con.GetCollection<CryptoInfo>();
+                var col = _con.GetCollection<CurrencyInfo>();
                 col.InsertBulk(infos);
             }
         }
 
-        public List<CryptoInfo> GetCurrencies()
+        public List<CurrencyInfo> GetCurrencies()
         {
-            return _con.GetCollection<CryptoInfo>().FindAll().ToList();
+            return _con.GetCollection<CurrencyInfo>().FindAll().ToList();
         }
 
         public void AddTrigger(CurrencyTrigger trigger)

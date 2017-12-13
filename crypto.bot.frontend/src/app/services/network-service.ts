@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { VariableService } from './variable-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth-service';
 
 @Injectable()
 export class NetworkService {
-    constructor(public _http: HttpClient, private variableService : VariableService) {
+    constructor(
+        private _http: HttpClient,
+        private variableService: VariableService,
+        private _authService: AuthService) {
     }
 
     getCurrencies(token) {

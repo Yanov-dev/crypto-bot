@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using crypto.bot.backend.Background;
+using crypto.bot.backend.dto;
+using crypto.bot.backend.Models;
 using crypto.bot.backend.Options;
 using crypto.bot.backend.Repositories;
 using crypto.bot.backend.Services;
@@ -30,27 +33,28 @@ namespace crypto.bot.backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Mapper.Initialize(e => { e.CreateMap<CurrencyDto, CurrencyInfo>(); });
+
             services.AddMvc();
-            
+
             // background
             services.AddSingleton<IHostedService, CryptoCheckHostedService>();
             services.AddSingleton<IHostedService, TelegramBotHostedService>();
 
             services.AddSingleton<ITokenService, TokenService>();
-            
+
             // db
             services.AddSingleton<ICryptoRepository, CryptoRepository>();
 
-            
 
             services.Configure<TelegramOptions>(Configuration.GetSection(nameof(TelegramOptions)));
             services.Configure<AuthOptions>(Configuration.GetSection(nameof(AuthOptions)));
-            
+
             var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();
-            
+
             if (!authOptions.IsValid)
                 throw new Exception("auth options is invalid");
-            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -66,9 +70,9 @@ namespace crypto.bot.backend
                         ValidateIssuerSigningKey = true,
                     };
                 });
-            
+
             services.AddSingleton<IAuthService, AuthService>();
-            
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
