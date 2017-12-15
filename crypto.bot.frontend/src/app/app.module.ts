@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatDialogModule, MatAutocompleteModule, MatInputModule, MatSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +19,8 @@ import { CurrencyService } from './services/currency-service';
 import { TriggersComponent } from './components/triggers.component/triggers.component';
 import { CurrencyComponent } from './components/currency.component/currency.component';
 import { MatTableModule } from '@angular/material/table';
-import { AddTriggerDialog } from './components/add.trigger.component/add.trigger.dialog';
+import { AddTriggerDialog } from './components/dialogs/add.trigger.dialog/add.trigger.dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { AddTriggerDialog } from './components/add.trigger.component/add.trigger
     TriggersComponent
   ],
   imports: [
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
     MatDialogModule,
     MatTableModule,
     HttpClientModule,

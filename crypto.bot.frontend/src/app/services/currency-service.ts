@@ -14,6 +14,19 @@ export class CurrencyService {
     }
 
     getCurrencies(): Observable<Currency[]> {
-        return this._http.get(`${this._variableService.Host}/api/currency`).map(e => { return <Currency[]>e });
+        return this._http.get(`${this._variableService.Host}/api/currency`).map(e => { return this.sortCurrencies(<Currency[]>e) });
+    }
+
+    private sortCurrencies(currencies: Currency[]): Currency[] {
+        return currencies.sort(function (a, b) {
+            if (a.rank > b.rank) {
+                return 1;
+            }
+            if (a.rank < b.rank) {
+                return -1;
+            }
+
+            return 0;
+        })
     }
 }

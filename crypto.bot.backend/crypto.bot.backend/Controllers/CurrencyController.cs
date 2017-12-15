@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace crypto.bot.backend.Controllers
 {    
+    [Authorize]
     [Route("api/currency")]
     public class CurrencyController : Controller
     {
