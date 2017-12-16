@@ -5,7 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using crypto.bot.backend.Extensions;
 using crypto.bot.backend.Models;
+using crypto.bot.backend.Models.CryptoTrigger;
 using crypto.bot.backend.Repositories;
+using crypto.bot.backend.Repositories.Trigger;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,30 +17,30 @@ namespace crypto.bot.backend.Controllers
     [Route("api/trigger")]
     public class TriggerController : Controller
     {
-        private readonly ICryptoRepository _cryptoRepository;
+        private readonly ITriggerRepository _triggerRepository;
 
-        public TriggerController(ICryptoRepository cryptoRepository)
+        public TriggerController(ITriggerRepository triggerRepository)
         {
-            _cryptoRepository = cryptoRepository;
+            _triggerRepository = triggerRepository;
         }
 
         [HttpGet]
-        public async Task<List<CurrencyTrigger>> Get()
+        public async Task<List<CryptoTrigger>> Get()
         {
             var id = this.GetTelegramUserId();
 
-            return await Task.Run(() => _cryptoRepository.GetTriggers(id));
+            return null;
         }
 
         [HttpPost]
-        public async Task Post([FromBody] CurrencyTrigger trigger)
+        public async Task Post([FromBody] CryptoTrigger cryptoTrigger)
         {
             var userId = this.GetTelegramUserId();
             await Task.Run(() =>
             {
-                trigger.Id = Guid.NewGuid().ToString();
-                trigger.TelegramUserId = userId;
-                _cryptoRepository.AddTrigger(trigger);
+                cryptoTrigger.Id = Guid.NewGuid();
+                cryptoTrigger.TelegramUserId = userId;
+                _triggerRepository.AddTrigger(cryptoTrigger);
             });
         }
     }

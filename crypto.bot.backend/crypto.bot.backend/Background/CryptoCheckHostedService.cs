@@ -7,6 +7,7 @@ using AutoMapper;
 using crypto.bot.backend.dto;
 using crypto.bot.backend.Models;
 using crypto.bot.backend.Repositories;
+using crypto.bot.backend.Repositories.Currency;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -14,11 +15,11 @@ namespace crypto.bot.backend.Background
 {
     public class CryptoCheckHostedService : HostedService
     {
-        private readonly ICryptoRepository _cryptoRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
-        public CryptoCheckHostedService(ICryptoRepository cryptoRepository)
+        public CryptoCheckHostedService(ICurrencyRepository currencyRepository)
         {
-            _cryptoRepository = cryptoRepository;
+            _currencyRepository = currencyRepository;
         }
         
         protected override async Task ExecuteAsync(CancellationToken ct)
@@ -38,7 +39,7 @@ namespace crypto.bot.backend.Background
                     var json = response.Content;
                     var models = JsonConvert.DeserializeObject<CurrencyDto[]>(json);
 
-                    _cryptoRepository.UpdateCurrencies(Mapper.Map<CurrencyInfo[]>(models));
+                    _currencyRepository.AddCurrencies(Mapper.Map<CurrencyInfo[]>(models));
                 }
                 catch (Exception ex)
                 {

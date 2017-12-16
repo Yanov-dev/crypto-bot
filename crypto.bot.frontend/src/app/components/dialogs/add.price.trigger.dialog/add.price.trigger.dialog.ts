@@ -7,15 +7,15 @@ import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 
 @Component({
-  templateUrl: 'add.trigger.dialog.html',
+  templateUrl: 'add.price.trigger.dialog.html',
 })
-export class AddTriggerDialog {
+export class AddPriceTriggerDialog {
   stateCtrl: FormControl;
   currencies: Currency[];
   filteredCurrencies: Observable<Currency[]>
 
   constructor(
-    public dialogRef: MatDialogRef<AddTriggerDialog>,
+    public dialogRef: MatDialogRef<AddPriceTriggerDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.currencies = data.currencies;
@@ -28,7 +28,11 @@ export class AddTriggerDialog {
       );
   }
 
-  onNoClick(): void {
+  addClick() {
+    this.dialogRef.close({ hi: 'hola' });
+  }
+
+  cancelClick(): void {
     this.dialogRef.close();
   }
 

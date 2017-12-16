@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crypto.bot.backend", "crypt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crypto.bot.backend.dto", "crypto.bot.backend.dto\crypto.bot.backend.dto.csproj", "{04EE344F-B592-461A-AC14-422BE0E97C7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crypto.bot.backend.tests", "crypto.bot.backend.tests\crypto.bot.backend.tests.csproj", "{86684A4A-3225-40CC-A0CB-7B89290D84DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{04EE344F-B592-461A-AC14-422BE0E97C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04EE344F-B592-461A-AC14-422BE0E97C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04EE344F-B592-461A-AC14-422BE0E97C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86684A4A-3225-40CC-A0CB-7B89290D84DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86684A4A-3225-40CC-A0CB-7B89290D84DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86684A4A-3225-40CC-A0CB-7B89290D84DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86684A4A-3225-40CC-A0CB-7B89290D84DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

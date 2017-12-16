@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { CurrencyTrigger } from "../../models/currency-trigger";
 import { TriggerService } from "../../services/trigger-service";
 import { MatDialog } from "@angular/material";
-import { AddTriggerDialog } from "../dialogs/add.trigger.dialog/add.trigger.dialog";
 import { CurrencyService } from "../../services/currency-service";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/forkJoin';
 import { Currency } from "../../models/currency";
+import { AddPriceTriggerDialog } from "../dialogs/add.price.trigger.dialog/add.price.trigger.dialog";
 
 @Component({
   templateUrl: './triggers.component.html',
@@ -33,11 +33,15 @@ export class TriggersComponent implements OnInit {
   }
 
   addTrigger() {
-    let dialogRef = this._dialog.open(AddTriggerDialog, {
+    let dialogRef = this._dialog.open(AddPriceTriggerDialog, {
       width: '250px',
       data: {
-        currencies : this.currencies
+        currencies: this.currencies
       }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace crypto.bot.backend.Services
+namespace crypto.bot.backend.Services.Token
 {
     public class TokenService : ITokenService
     {

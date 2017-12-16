@@ -19,12 +19,12 @@ import { CurrencyService } from './services/currency-service';
 import { TriggersComponent } from './components/triggers.component/triggers.component';
 import { CurrencyComponent } from './components/currency.component/currency.component';
 import { MatTableModule } from '@angular/material/table';
-import { AddTriggerDialog } from './components/dialogs/add.trigger.dialog/add.trigger.dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPriceTriggerDialog } from './components/dialogs/add.price.trigger.dialog/add.price.trigger.dialog';
 
 @NgModule({
   declarations: [
-    AddTriggerDialog,
+    AddPriceTriggerDialog,
     HomePageComponent,
     CurrencyComponent,
     AppComponent,
@@ -48,7 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule
   ],
   entryComponents: [
-    AddTriggerDialog
+    AddPriceTriggerDialog
   ],
   providers: [
     {

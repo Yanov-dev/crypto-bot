@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace crypto.bot.backend.Services
+namespace crypto.bot.backend.Services.Token
 {
     public interface ITokenService
     {

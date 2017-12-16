@@ -1,4 +1,4 @@
-﻿namespace crypto.bot.backend.Services
+﻿namespace crypto.bot.backend.Services.Auth
 {
     public interface IAuthService
     {

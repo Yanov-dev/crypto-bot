@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using crypto.bot.backend.Options;
 using crypto.bot.backend.Services;
+using crypto.bot.backend.Services.Auth;
+using crypto.bot.backend.Services.Token;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Types;
