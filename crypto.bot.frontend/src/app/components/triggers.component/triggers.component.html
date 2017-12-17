@@ -1,25 +1,25 @@
-<div>
-  <div class="mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="сurrency">
-        <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.сurrency}} </mat-cell>
-      </ng-container>
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="сurrency">
+      <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="operator">
-        <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.operator}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="operator">
+      <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.operator}} </mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+    <!-- Name Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
   <button mat-raised-button color="primary" (click)="addTrigger()">Add</button>
 </div>

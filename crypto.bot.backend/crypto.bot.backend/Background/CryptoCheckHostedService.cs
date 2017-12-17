@@ -8,6 +8,7 @@ using crypto.bot.backend.dto;
 using crypto.bot.backend.Models;
 using crypto.bot.backend.Repositories;
 using crypto.bot.backend.Repositories.Currency;
+using crypto.bot.backend.Services.TriggerServices.TriggerChecker;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -16,10 +17,14 @@ namespace crypto.bot.backend.Background
     public class CryptoCheckHostedService : HostedService
     {
         private readonly ICurrencyRepository _currencyRepository;
+        private readonly ITriggerCheckerService _triggerCheckerService;
 
-        public CryptoCheckHostedService(ICurrencyRepository currencyRepository)
+        public CryptoCheckHostedService(
+            ICurrencyRepository currencyRepository,
+            ITriggerCheckerService triggerCheckerService)
         {
             _currencyRepository = currencyRepository;
+            _triggerCheckerService = triggerCheckerService;
         }
         
         protected override async Task ExecuteAsync(CancellationToken ct)
@@ -48,6 +53,7 @@ namespace crypto.bot.backend.Background
                 }
                 finally
                 {
+                    _triggerCheckerService.Check();
                     await Task.Delay(5000, ct).ConfigureAwait(false);                    
                 }
             }

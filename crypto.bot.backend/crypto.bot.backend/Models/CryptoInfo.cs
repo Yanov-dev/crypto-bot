@@ -42,7 +42,7 @@ namespace crypto.bot.backend.Models
 
         public string PriceBtc { get; set; }
 
-        public string PriceUsd { get; set; }
+        public float PriceUsd { get; set; }
 
         public int Rank { get; set; }
 

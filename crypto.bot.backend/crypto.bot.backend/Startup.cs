@@ -12,7 +12,9 @@ using crypto.bot.backend.Repositories.Currency;
 using crypto.bot.backend.Repositories.Trigger;
 using crypto.bot.backend.Services;
 using crypto.bot.backend.Services.Auth;
+using crypto.bot.backend.Services.TelegramBot;
 using crypto.bot.backend.Services.Token;
+using crypto.bot.backend.Services.TriggerServices.TriggerChecker;
 using crypto.bot.backend.Services.TriggerServices.TriggerConverterService;
 using crypto.bot.backend.Services.TriggerServices.TriggerProccesor;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -24,6 +26,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Telegram.Bot;
 
 namespace crypto.bot.backend
 {
@@ -60,6 +63,9 @@ namespace crypto.bot.backend
 
             services.AddSingleton<ITriggerConverterService, TriggerConverterService>();
             services.AddSingleton<ITriggerProcessor, TriggerProcessor>();
+            services.AddSingleton<ITriggerCheckerService, TriggerCheckerService>();
+
+            services.AddSingleton<ITelegramBotService, TelegramBotService>();
 
             var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();
 

@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using crypto.bot.backend.Options;
 using crypto.bot.backend.Services;
 using crypto.bot.backend.Services.Auth;
+using crypto.bot.backend.Services.TelegramBot;
 using crypto.bot.backend.Services.Token;
+using crypto.bot.backend.Services.TriggerServices.TriggerChecker;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -16,25 +18,19 @@ namespace crypto.bot.backend.Background
     {
         private readonly IAuthService _authService;
         private readonly ITokenService _tokenService;
+        private readonly ITelegramBotService _telegramBotService;
         private readonly AuthOptions _authOptions;
-        private readonly TelegramBotClient _api;
 
         public TelegramBotHostedService(
             IAuthService authService,
             ITokenService tokenService,
-            IOptions<TelegramOptions> telegramOptions,
+            ITelegramBotService telegramBotService,
             IOptions<AuthOptions> authOptions)
         {
             _authService = authService;
             _tokenService = tokenService;
+            _telegramBotService = telegramBotService;
             _authOptions = authOptions.Value;
-
-            var token = telegramOptions?.Value?.Token;
-
-            if (string.IsNullOrEmpty(token))
-                throw new Exception("telegram token not set");
-
-            _api = new TelegramBotClient(token);
         }
 
         protected override async Task ExecuteAsync(CancellationToken ct)
@@ -43,7 +39,7 @@ namespace crypto.bot.backend.Background
 
             while (!IsStoped)
             {
-                var updates = await _api.GetUpdatesAsync(offset, cancellationToken: ct).ConfigureAwait(false);
+                var updates = await _telegramBotService.GetUpdatesAsync(offset, ct).ConfigureAwait(false);
 
                 foreach (var update in updates)
                 {
@@ -80,7 +76,7 @@ namespace crypto.bot.backend.Background
                 _tokenService.Add(tokenId, jwt);
 
                 var callBackUrl = $"http://localhost:4200/callback/{tokenId}";
-                await _api.SendTextMessageAsync(chatId, callBackUrl).ConfigureAwait(false);
+                await _telegramBotService.SendTextMessageAsync(chatId, callBackUrl).ConfigureAwait(false);
             }
         }
     }
