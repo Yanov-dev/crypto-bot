@@ -11,8 +11,11 @@ import { map } from 'rxjs/operators/map';
 })
 export class AddPriceTriggerDialog {
   stateCtrl: FormControl;
+  priceCtrl: FormControl = new FormControl();
   currencies: Currency[];
   filteredCurrencies: Observable<Currency[]>
+
+  operator: any;
 
   constructor(
     public dialogRef: MatDialogRef<AddPriceTriggerDialog>,
@@ -29,7 +32,11 @@ export class AddPriceTriggerDialog {
   }
 
   addClick() {
-    this.dialogRef.close({ hi: 'hola' });
+    this.dialogRef.close({
+      operator: this.operator,
+      currency: this.stateCtrl.value,
+      price: this.priceCtrl.value
+    });
   }
 
   cancelClick(): void {

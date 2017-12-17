@@ -19,9 +19,9 @@ namespace crypto.bot.backend.tests
                 TriggerDbPath = "tests.db4"
             });
             var repo = new TriggerRepository(options);
-            
-            repo.AddTrigger(new PriceCryptoTrigger());
-            repo.AddTrigger(new PercentCryptoTrigger());
+
+            repo.AddTrigger(new PriceCryptoTrigger(), 0);
+            repo.AddTrigger(new PercentCryptoTrigger(), 0);
         }
     }
 }

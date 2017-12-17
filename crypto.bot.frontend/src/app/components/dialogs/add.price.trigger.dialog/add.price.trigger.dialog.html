@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Add trigger</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Currency" aria-label="Currency" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <input matInput placeholder="Currency" aria-label="Currency" [matAutocomplete]="auto" [formControl]="stateCtrl" >
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let state of filteredCurrencies | async" [value]="state.name">
         <span>{{ state.name }}</span>,
@@ -11,7 +11,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="When">
+    <mat-select placeholder="When" [(value)]="operator">
       <mat-option value="MoreThan">
         More than
       </mat-option>
@@ -23,7 +23,7 @@
 
   <mat-form-field>
     <span matPrefix>$ &nbsp;</span>
-    <input matInput placeholder="Price">
+    <input matInput placeholder="Price" [formControl]="priceCtrl">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

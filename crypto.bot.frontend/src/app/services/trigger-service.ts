@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { NetworkService } from './network-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CurrencyTrigger } from '../models/currency-trigger';
+import { PriceTrigger } from '../models/price-trigger';
 
 @Injectable()
 export class TriggerService {
@@ -15,7 +16,14 @@ export class TriggerService {
         private _networkService: NetworkService) {
     }
 
-    getTriggers(): Observable<CurrencyTrigger[]> {
-        return this._http.get(`${this._variableService.Host}/api/trigger`).map(e => { return <CurrencyTrigger[]>e });
+    postPriceTrigger(trigger: PriceTrigger): Observable<any> {
+        return this._http.post(`${this._variableService.Host}/api/trigger`, {
+            "type": "price",
+            "trigger": trigger
+        });;
+    }
+
+    getPriceTriggers(): Observable<PriceTrigger[]> {
+        return this._http.get(`${this._variableService.Host}/api/trigger?type=price`).map(e => { return <PriceTrigger[]>e });
     }
 }

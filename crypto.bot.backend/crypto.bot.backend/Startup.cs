@@ -13,6 +13,8 @@ using crypto.bot.backend.Repositories.Trigger;
 using crypto.bot.backend.Services;
 using crypto.bot.backend.Services.Auth;
 using crypto.bot.backend.Services.Token;
+using crypto.bot.backend.Services.TriggerServices.TriggerConverterService;
+using crypto.bot.backend.Services.TriggerServices.TriggerProccesor;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +57,9 @@ namespace crypto.bot.backend
             services.Configure<TelegramOptions>(Configuration.GetSection(nameof(TelegramOptions)));
             services.Configure<AuthOptions>(Configuration.GetSection(nameof(AuthOptions)));
             services.Configure<RepositoryOptions>(Configuration.GetSection(nameof(RepositoryOptions)));
+
+            services.AddSingleton<ITriggerConverterService, TriggerConverterService>();
+            services.AddSingleton<ITriggerProcessor, TriggerProcessor>();
 
             var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();
 

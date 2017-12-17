@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using crypto.bot.backend.dto;
 using crypto.bot.backend.Extensions;
 using crypto.bot.backend.Models;
 using crypto.bot.backend.Models.CryptoTrigger;
 using crypto.bot.backend.Repositories;
 using crypto.bot.backend.Repositories.Trigger;
+using crypto.bot.backend.Services.TriggerServices.TriggerConverterService;
+using crypto.bot.backend.Services.TriggerServices.TriggerProccesor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,22 +28,28 @@ namespace crypto.bot.backend.Controllers
         }
 
         [HttpGet]
-        public async Task<List<CryptoTrigger>> Get()
+        public async Task<List<CryptoTrigger>> Get(
+            string type,
+            [FromServices] ITriggerProcessor triggerProcessor)
         {
             var id = this.GetTelegramUserId();
 
-            return null;
+            return await Task.Run(() => triggerProcessor.GetUserTriggers(type, id).ToList());
         }
 
         [HttpPost]
-        public async Task Post([FromBody] CryptoTrigger cryptoTrigger)
+        public async Task Post(
+            [FromBody] PostTriggerRequest request,
+            [FromServices] ITriggerConverterService triggerConverterService,
+            [FromServices] ITriggerProcessor triggerProcessor)
         {
             var userId = this.GetTelegramUserId();
+
             await Task.Run(() =>
             {
-                cryptoTrigger.Id = Guid.NewGuid();
-                cryptoTrigger.TelegramUserId = userId;
-                _triggerRepository.AddTrigger(cryptoTrigger);
+                var trigger = triggerConverterService.Parse(request);
+
+                triggerProcessor.Save(trigger, userId);
             });
         }
     }
