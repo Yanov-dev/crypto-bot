@@ -32,9 +32,14 @@ export class TriggersComponent implements OnInit {
       this._currencyService.getCurrencies(),
       this._triggerService.getPriceTriggers()).subscribe(res => {
         this.currencies = res[0];
-        this.triggers = res[1];
-        this.dataSource = new MatTableDataSource<PriceTrigger>(this.triggers);
+        this.setTriggers(res[1]);
       })
+  }
+
+  setTriggers(triggers: PriceTrigger[]) {
+    this.triggers = triggers;
+    this.dataSource = new MatTableDataSource<PriceTrigger>(this.triggers);
+    console.log(this.triggers);
   }
 
   addTrigger() {
@@ -51,9 +56,7 @@ export class TriggersComponent implements OnInit {
 
       this._triggerService.postPriceTrigger(result).subscribe(e => {
         this._triggerService.getPriceTriggers().subscribe(triggers => {
-          this.triggers = triggers;
-          this.dataSource = new MatTableDataSource<PriceTrigger>(this.triggers);
-          console.log(this.triggers);
+          this.setTriggers(triggers);
         });
       });
     });

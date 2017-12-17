@@ -26,6 +26,7 @@ namespace crypto.bot.backend.Repositories.Trigger
         {
             trigger.Id = Guid.NewGuid();
             trigger.CreateDate = DateTime.Now;
+            trigger.TelegramUserId = telegramUserId;
             _con.GetCollection<T>().Insert(trigger);
         }
 

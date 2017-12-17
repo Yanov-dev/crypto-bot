@@ -1,3 +1,3 @@
-export class CurrencyTrigger {
+export interface CurrencyTrigger {
    
 }
