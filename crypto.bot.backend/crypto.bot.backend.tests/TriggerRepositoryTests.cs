@@ -2,7 +2,6 @@ using System.IO;
 using crypto.bot.backend.Models.CryptoTrigger;
 using crypto.bot.backend.Options;
 using crypto.bot.backend.Repositories.Trigger;
-using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace crypto.bot.backend.tests

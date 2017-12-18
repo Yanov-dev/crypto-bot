@@ -17,7 +17,7 @@ namespace crypto.bot.backend.Repositories.Currency
             var dbPath = options.Value.CurrencyDbPath;
             if (string.IsNullOrEmpty(dbPath))
                 throw new ArgumentNullException($"{nameof(options.Value.CurrencyDbPath)} not set");
-            
+
             _con = new LiteDatabase(dbPath);
         }
 

@@ -1,25 +1,26 @@
-<div class="mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+<loading-content [isLoading]="isLoading">
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="сurrency">
-      <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="сurrency">
+        <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="operator">
-      <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.operator}} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="operator">
+        <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.operator}} </mat-cell>
+      </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-    </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
   <button mat-raised-button color="primary" (click)="addTrigger()">Add</button>
-</div>
+</loading-content>

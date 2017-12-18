@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using crypto.bot.backend.Background;
 using crypto.bot.backend.dto;
 using crypto.bot.backend.Models;
 using crypto.bot.backend.Options;
-using crypto.bot.backend.Repositories;
 using crypto.bot.backend.Repositories.Currency;
 using crypto.bot.backend.Repositories.Trigger;
-using crypto.bot.backend.Services;
 using crypto.bot.backend.Services.Auth;
-using crypto.bot.backend.Services.TelegramBot;
+using crypto.bot.backend.Services.CurrencySource;
+using crypto.bot.backend.Services.Telegram.TelegramApiService;
+using crypto.bot.backend.Services.Telegram.TelegramCommandProcessor;
 using crypto.bot.backend.Services.Token;
 using crypto.bot.backend.Services.TriggerServices.TriggerChecker;
 using crypto.bot.backend.Services.TriggerServices.TriggerConverterService;
@@ -23,10 +20,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Telegram.Bot;
 
 namespace crypto.bot.backend
 {
@@ -39,7 +33,6 @@ namespace crypto.bot.backend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             Mapper.Initialize(e => { e.CreateMap<CurrencyDto, CurrencyInfo>(); });
@@ -49,6 +42,7 @@ namespace crypto.bot.backend
             // background
             services.AddSingleton<IHostedService, CryptoCheckHostedService>();
             services.AddSingleton<IHostedService, TelegramBotHostedService>();
+
 
             services.AddSingleton<ITokenService, TokenService>();
 
@@ -65,7 +59,10 @@ namespace crypto.bot.backend
             services.AddSingleton<ITriggerProcessor, TriggerProcessor>();
             services.AddSingleton<ITriggerCheckerService, TriggerCheckerService>();
 
-            services.AddSingleton<ITelegramBotService, TelegramBotService>();
+            services.AddSingleton<ITelegramApiService, TelegramApiService>();
+            services.AddSingleton<ITelegramCommandProcessor, TelegramCommandProcessor>();
+
+            services.AddSingleton<ICurrencySource, CurrencySource>();
 
             var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();
 
@@ -84,7 +81,7 @@ namespace crypto.bot.backend
                         ValidAudience = authOptions.Audience,
                         ValidateLifetime = true,
                         IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
-                        ValidateIssuerSigningKey = true,
+                        ValidateIssuerSigningKey = true
                     };
                 });
 

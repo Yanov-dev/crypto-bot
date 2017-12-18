@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace crypto.bot.backend.Extensions
 {

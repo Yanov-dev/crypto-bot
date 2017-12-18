@@ -17,19 +17,6 @@ namespace crypto.bot.backend.Services.Auth
             _authOptions = authOptions.Value;
         }
 
-        private ClaimsIdentity GetIdentity(long telegramUserId)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, telegramUserId.ToString()),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, "user")
-            };
-            var claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-            return claimsIdentity;
-        }
-
         public string GenerateJwt(long telegramUserId)
         {
             var identity = GetIdentity(telegramUserId);
@@ -46,6 +33,19 @@ namespace crypto.bot.backend.Services.Auth
                     SecurityAlgorithms.HmacSha256));
 
             return new JwtSecurityTokenHandler().WriteToken(jwt);
+        }
+
+        private ClaimsIdentity GetIdentity(long telegramUserId)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, telegramUserId.ToString()),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, "user")
+            };
+            var claimsIdentity =
+                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                    ClaimsIdentity.DefaultRoleClaimType);
+            return claimsIdentity;
         }
     }
 }

@@ -18,6 +18,8 @@ export class TriggersComponent implements OnInit {
   triggers: PriceTrigger[];
   currencies: Currency[];
 
+  isLoading: boolean;
+
   dataSource: MatTableDataSource<PriceTrigger>;
   displayedColumns = ['сurrency', 'operator', 'price'];
 
@@ -28,6 +30,7 @@ export class TriggersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     Observable.forkJoin(
       this._currencyService.getCurrencies(),
       this._triggerService.getPriceTriggers()).subscribe(res => {

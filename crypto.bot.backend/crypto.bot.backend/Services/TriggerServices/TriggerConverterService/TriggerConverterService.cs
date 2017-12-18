@@ -11,7 +11,7 @@ namespace crypto.bot.backend.Services.TriggerServices.TriggerConverterService
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
-            
+
             switch (request.Type)
             {
                 case "price":

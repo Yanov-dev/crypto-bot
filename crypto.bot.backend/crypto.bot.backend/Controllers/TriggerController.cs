@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using crypto.bot.backend.dto;
 using crypto.bot.backend.Extensions;
-using crypto.bot.backend.Models;
 using crypto.bot.backend.Models.CryptoTrigger;
-using crypto.bot.backend.Repositories;
 using crypto.bot.backend.Repositories.Trigger;
 using crypto.bot.backend.Services.TriggerServices.TriggerConverterService;
 using crypto.bot.backend.Services.TriggerServices.TriggerProccesor;

@@ -21,12 +21,14 @@ import { CurrencyComponent } from './components/currency.component/currency.comp
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPriceTriggerDialog } from './components/dialogs/add.price.trigger.dialog/add.price.trigger.dialog';
+import { LoadingCardComponent } from './components/loading.card.component/loading.card.component';
 
 @NgModule({
   declarations: [
     AddPriceTriggerDialog,
     HomePageComponent,
     CurrencyComponent,
+    LoadingCardComponent,
     AppComponent,
     CallBackPageComponent,
     TriggersComponent

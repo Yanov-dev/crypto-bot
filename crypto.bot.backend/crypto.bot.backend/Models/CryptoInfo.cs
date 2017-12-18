@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace crypto.bot.backend.Models
+﻿namespace crypto.bot.backend.Models
 {
     /*{
         "id": "bitcoin",
@@ -19,7 +17,7 @@ namespace crypto.bot.backend.Models
         "percent_change_7d": "26.3",
         "last_updated": "1512330854"
     },*/
-    
+
     public class CurrencyInfo
     {
         public string AvailableSupply { get; set; }

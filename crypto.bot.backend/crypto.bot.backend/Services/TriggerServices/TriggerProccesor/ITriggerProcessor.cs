@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using crypto.bot.backend.dto;
 using crypto.bot.backend.Models.CryptoTrigger;
 
 namespace crypto.bot.backend.Services.TriggerServices.TriggerProccesor

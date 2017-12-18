@@ -4,9 +4,9 @@ using crypto.bot.backend.Models;
 using crypto.bot.backend.Models.CryptoTrigger;
 using Telegram.Bot.Types;
 
-namespace crypto.bot.backend.Services.TelegramBot
+namespace crypto.bot.backend.Services.Telegram.TelegramApiService
 {
-    public interface ITelegramBotService
+    public interface ITelegramApiService
     {
         Task SendAboutPriceTrigger(PriceCryptoTrigger trigger, CurrencyInfo currency);
 

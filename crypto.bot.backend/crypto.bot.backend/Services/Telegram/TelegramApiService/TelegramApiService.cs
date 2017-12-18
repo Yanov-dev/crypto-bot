@@ -9,13 +9,13 @@ using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace crypto.bot.backend.Services.TelegramBot
+namespace crypto.bot.backend.Services.Telegram.TelegramApiService
 {
-    public class TelegramBotService : ITelegramBotService
+    public class TelegramApiService : ITelegramApiService
     {
         private readonly TelegramBotClient _api;
 
-        public TelegramBotService(IOptions<TelegramOptions> telegramOptions)
+        public TelegramApiService(IOptions<TelegramOptions> telegramOptions)
         {
             var token = telegramOptions?.Value?.Token;
 
