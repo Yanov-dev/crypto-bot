@@ -14,6 +14,8 @@ appsettings.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+crypto.bot.backend/wwwroot/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

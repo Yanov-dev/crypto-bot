@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPriceTriggerDialog } from './components/dialogs/add.price.trigger.dialog/add.price.trigger.dialog';
 import { LoadingCardComponent } from './components/loading.card.component/loading.card.component';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { LoginPageComponent } from './pages/login-page/login.page';
+import { AuthorizationGuard } from './services/auth-guard';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
     LoadingCardComponent,
     AppComponent,
     CallBackPageComponent,
+    LoginPageComponent,
     TriggersComponent
   ],
   imports: [
@@ -67,6 +70,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
       useClass: AuthenticationInterceptor,
       multi: true,
     },
+    AuthorizationGuard,
     TriggerService,
     NetworkService,
     CurrencyService,
