@@ -38,6 +38,8 @@ namespace crypto.bot.backend.Controllers
             [FromBody] DeleteTriggerRequest request,
             [FromServices] ITriggerProcessor triggerProcessor)
         {
+            // todo : check if this user can delelet this trigger
+            
             await Task.Run(() =>
             {
                 triggerProcessor.Delete(request.Type, request.Id);

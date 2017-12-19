@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatButtonModule, MatDialogModule, MatAutocompleteModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatDialogModule, MatAutocompleteModule, MatInputModule, MatSelectModule, MatSortModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +42,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
       secondaryColour: '#ffffff',      
       tertiaryColour: '#ffffff'
     }),
+    MatSortModule,
     MatInputModule,
     MatSelectModule,
     FormsModule,
