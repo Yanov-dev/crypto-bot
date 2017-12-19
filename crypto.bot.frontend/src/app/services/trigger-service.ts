@@ -16,6 +16,15 @@ export class TriggerService {
         private _networkService: NetworkService) {
     }
 
+    deletePriceTrigger(id: string): Observable<any> {
+        return this._http.request('delete', `${this._variableService.Host}/api/trigger`, {
+            body: {
+                "type": "price",
+                "id": id
+            }
+        });
+    }
+
     postPriceTrigger(trigger: PriceTrigger): Observable<any> {
         return this._http.post(`${this._variableService.Host}/api/trigger`, {
             "type": "price",

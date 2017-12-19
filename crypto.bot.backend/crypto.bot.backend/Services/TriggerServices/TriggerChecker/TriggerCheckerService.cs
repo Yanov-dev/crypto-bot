@@ -37,7 +37,7 @@ namespace crypto.bot.backend.Services.TriggerServices.TriggerChecker
                 if (condition)
                 {
                     _telegramApiService.SendAboutPriceTrigger(trigger, currency);
-                    _triggerRepository.Remove<PriceCryptoTrigger>(trigger.Id);
+                    _triggerRepository.Delete<PriceCryptoTrigger>(trigger.Id);
                 }
             }
         }

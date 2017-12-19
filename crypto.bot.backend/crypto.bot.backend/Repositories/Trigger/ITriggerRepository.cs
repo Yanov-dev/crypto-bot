@@ -12,6 +12,6 @@ namespace crypto.bot.backend.Repositories.Trigger
 
         List<T> GetAll<T>() where T : CryptoTrigger;
 
-        void Remove<T>(Guid id) where T : CryptoTrigger;
+        void Delete<T>(Guid id) where T : CryptoTrigger;
     }
 }

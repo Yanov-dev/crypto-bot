@@ -14,6 +14,16 @@ namespace crypto.bot.backend.Services.TriggerServices.TriggerProccesor
             _triggerRepository = triggerRepository;
         }
 
+        public void Delete(string type, Guid id)
+        {
+            switch (type)
+            {
+                case "price":
+                    _triggerRepository.Delete<PriceCryptoTrigger>(id);
+                    break;
+            }
+        }
+
         public void Save(CryptoTrigger trigger, long telegramUserId)
         {
             if (trigger == null)

@@ -35,14 +35,14 @@ namespace crypto.bot.backend.Repositories.Trigger
             return _con.GetCollection<T>().Find(e => e.TelegramUserId == telegramUserId).ToList();
         }
 
+        public void Delete<T>(Guid id) where T : CryptoTrigger
+        {
+            _con.GetCollection<T>().Delete(id);
+        }
+
         public List<T> GetAll<T>() where T : CryptoTrigger
         {
             return _con.GetCollection<T>().FindAll().ToList();
-        }
-
-        public void Remove<T>(Guid id) where T : CryptoTrigger
-        {
-            _con.GetCollection<T>().Delete(id);
         }
     }
 }

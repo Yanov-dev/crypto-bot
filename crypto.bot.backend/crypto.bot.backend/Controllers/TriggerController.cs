@@ -33,6 +33,17 @@ namespace crypto.bot.backend.Controllers
             return await Task.Run(() => triggerProcessor.GetUserTriggers(type, id).ToList());
         }
 
+        [HttpDelete]
+        public async Task Delete(
+            [FromBody] DeleteTriggerRequest request,
+            [FromServices] ITriggerProcessor triggerProcessor)
+        {
+            await Task.Run(() =>
+            {
+                triggerProcessor.Delete(request.Type, request.Id);
+            });
+        }
+        
         [HttpPost]
         public async Task Post(
             [FromBody] PostTriggerRequest request,

@@ -21,7 +21,7 @@ export class TriggersComponent implements OnInit {
   isLoading: boolean;
 
   dataSource: MatTableDataSource<PriceTrigger>;
-  displayedColumns = ['сurrency', 'operator', 'price'];
+  displayedColumns = ['сurrency', 'operator', 'price', 'remove'];
 
   constructor(
     private _triggerService: TriggerService,
@@ -36,6 +36,7 @@ export class TriggersComponent implements OnInit {
       this._triggerService.getPriceTriggers()).subscribe(res => {
         this.currencies = res[0];
         this.setTriggers(res[1]);
+        this.isLoading = false;
       })
   }
 
@@ -43,6 +44,16 @@ export class TriggersComponent implements OnInit {
     this.triggers = triggers;
     this.dataSource = new MatTableDataSource<PriceTrigger>(this.triggers);
     console.log(this.triggers);
+  }
+
+  removeTrigger(id: string) {
+    this.isLoading = true;
+    this._triggerService.deletePriceTrigger(id).subscribe(e => {
+      this._triggerService.getPriceTriggers().subscribe(triggers => {
+        this.setTriggers(triggers);
+        this.isLoading = false;
+      });
+    });
   }
 
   addTrigger() {
@@ -57,9 +68,11 @@ export class TriggersComponent implements OnInit {
       if (!result)
         return;
 
+      this.isLoading = true;
       this._triggerService.postPriceTrigger(result).subscribe(e => {
         this._triggerService.getPriceTriggers().subscribe(triggers => {
           this.setTriggers(triggers);
+          this.isLoading = false;
         });
       });
     });

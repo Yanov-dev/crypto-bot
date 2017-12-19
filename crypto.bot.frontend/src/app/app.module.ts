@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPriceTriggerDialog } from './components/dialogs/add.price.trigger.dialog/add.price.trigger.dialog';
 import { LoadingCardComponent } from './components/loading.card.component/loading.card.component';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,13 @@ import { LoadingCardComponent } from './components/loading.card.component/loadin
     TriggersComponent
   ],
   imports: [
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.3)',      
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',      
+      tertiaryColour: '#ffffff'
+    }),
     MatInputModule,
     MatSelectModule,
     FormsModule,
