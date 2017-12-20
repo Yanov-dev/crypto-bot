@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { CurrencyTrigger } from "../../models/currency-trigger";
 import { TriggerService } from "../../services/trigger-service";
-import { MatDialog, MatTableDataSource } from "@angular/material";
+import { MatDialog, MatTableDataSource, MatSort } from "@angular/material";
 import { CurrencyService } from "../../services/currency-service";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/forkJoin';
@@ -19,6 +19,8 @@ export class TriggersComponent implements OnInit {
   currencies: Currency[];
 
   isLoading: boolean;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   dataSource: MatTableDataSource<PriceTrigger>;
   displayedColumns = ['сurrency', 'operator', 'price', 'remove'];
@@ -43,6 +45,7 @@ export class TriggersComponent implements OnInit {
   setTriggers(triggers: PriceTrigger[]) {
     this.triggers = triggers;
     this.dataSource = new MatTableDataSource<PriceTrigger>(this.triggers);
+    this.dataSource.sort = this.sort;
     console.log(this.triggers);
   }
 

@@ -39,7 +39,7 @@ import { AuthorizationGuard } from './services/auth-guard';
   ],
   imports: [
     LoadingModule.forRoot({
-      animationType: ANIMATION_TYPES.wanderingCubes,
+      animationType: ANIMATION_TYPES.threeBounce,
       backdropBackgroundColour: 'rgba(0,0,0,0.3)',      
       primaryColour: '#ffffff',
       secondaryColour: '#ffffff',      

@@ -1,20 +1,20 @@
 <div>
   <ngx-loading [show]="isLoading"></ngx-loading>
   <div class="mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="сurrency">
-        <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Currency </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="operator">
-        <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Operator </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.operator==0?"More than":"Less than"}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef> Price $ </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Price $ </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
       </ng-container>
 

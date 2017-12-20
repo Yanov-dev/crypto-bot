@@ -13,7 +13,8 @@ const appRoutes: Routes = [
   {
     path: '',
     component: TriggersComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthorizationGuard]
   },
   { path: 'triggers', component: TriggersComponent, canActivate: [AuthorizationGuard] },
   { path: "currencies", component: CurrencyComponent, canActivate: [AuthorizationGuard] },

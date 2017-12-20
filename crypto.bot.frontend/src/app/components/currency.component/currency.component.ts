@@ -10,6 +10,7 @@ import { MatTableDataSource, MatSort } from "@angular/material";
 
 export class CurrencyComponent implements OnInit {
 
+    isLoading: boolean;
     currencies: Currency[];
     dataSource: MatTableDataSource<Currency>;
     displayedColumns = ['rank', 'id', 'name', 'priceUsd', 'symbol'];
@@ -20,10 +21,12 @@ export class CurrencyComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.isLoading = true;
         this._currencyService.getCurrencies().subscribe(currencies => {
             this.dataSource = new MatTableDataSource<Currency>(currencies);
             this.dataSource.sort = this.sort;
             this.currencies = currencies;
+            this.isLoading = false;
         })
     }
 }
