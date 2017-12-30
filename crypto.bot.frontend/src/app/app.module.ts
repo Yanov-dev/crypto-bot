@@ -25,6 +25,7 @@ import { LoadingCardComponent } from './components/loading.card.component/loadin
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { LoginPageComponent } from './pages/login-page/login.page';
 import { AuthorizationGuard } from './services/auth-guard';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AuthorizationGuard } from './services/auth-guard';
       secondaryColour: '#ffffff',      
       tertiaryColour: '#ffffff'
     }),
+    ChartsModule,
     MatSortModule,
     MatInputModule,
     MatSelectModule,
